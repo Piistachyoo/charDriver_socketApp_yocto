@@ -164,9 +164,9 @@ void receive_data(void) {
         struct aesd_seekto seekto;
         seekto.write_cmd = my_buffer[WRITE_CMD] - '0';
         seekto.write_cmd_offset = my_buffer[WRITE_CMD_OFF] - '0';
-        syslog(LOG_PRIO(LOG_DEBUG), "Calling ioctl with cmd = %lu\n",
+        syslog(LOG_PRIO(LOG_DEBUG), "Calling ioctl with cmd = %u\n",
                AESDCHAR_IOCSEEKTO);
-        printf("Calling IOCTL with cmd = %lu\n", AESDCHAR_IOCSEEKTO);
+        printf("Calling IOCTL with cmd = %u\n", AESDCHAR_IOCSEEKTO);
         printf("(%u, %u)\n", seekto.write_cmd, seekto.write_cmd_offset);
         printf("(%c, %c)\n", my_buffer[WRITE_CMD], my_buffer[WRITE_CMD_OFF]);
         file = fopen(PATH, "a");
