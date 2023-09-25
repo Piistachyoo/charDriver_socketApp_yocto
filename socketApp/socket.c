@@ -125,6 +125,7 @@ void receive_data(void) {
         }
         index++;
     }
+    syslog(LOG_PRIO(LOG_DEBUG), "The sent string is: %s\n", my_buffer);
     if (strncmp(IOCTL_CMD, my_buffer, strlen("AESDCHAR_IOC")) == 0) {
         ioctl_sent = 1;
         struct aesd_seekto seekto;
