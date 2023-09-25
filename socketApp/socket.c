@@ -43,12 +43,15 @@ struct node *HEAD = NULL;
 uint8_t ioctl_sent = 0;
 
 uint8_t check_ioctl(char *string) {
-    uint8_t retval, index;
+    uint8_t index;
     char *cmd = "AESDCHAR_IOCSEEKTO:";
-    for (index = 0; index < 19; index++) {
-        if (string[index] != cmd[index])
+    for (index = 0; index < strlen(cmd); index++) {
+        if (string[index] != cmd[index]) {
+            printf("They don't match\n");
             return 1;
+        }
     }
+    printf("They match\n");
     return 0;
 }
 
@@ -138,7 +141,9 @@ void receive_data(void) {
     syslog(LOG_PRIO(LOG_DEBUG), "**********************************\n");
     syslog(LOG_PRIO(LOG_DEBUG), "The sent string is: %s\n", my_buffer);
     syslog(LOG_PRIO(LOG_DEBUG), "**********************************\n");
+    printf("The sent string is: %s\n", my_buffer);
     // if (strncmp(IOCTL_CMD, my_buffer, strlen("AESDCHAR_IOC")) == 0) {
+    //     printf("Entered ioctl\n");
     //     ioctl_sent = 1;
     //     struct aesd_seekto seekto;
     //     seekto.write_cmd = my_buffer[WRITE_CMD] - '0';
@@ -170,7 +175,6 @@ void receive_data(void) {
         }
         fclose(file);
     } else {
-
         syslog(LOG_PRIO(LOG_DEBUG), "Opening file\n");
         file = fopen(PATH, "a");
         syslog(LOG_PRIO(LOG_DEBUG), "Writing to file\n");

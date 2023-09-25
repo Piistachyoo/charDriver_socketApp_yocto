@@ -1,4 +1,5 @@
 target=192.168.1.7
+target=localhost
 port=9000
 rc=0
 

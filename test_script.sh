@@ -1,6 +1,7 @@
 device="/dev/aesdchar"
-target="beaglebone-yocto.local"
-#target="localhost"
+#target="beaglebone-yocto.local"
+target="localhost"
+#target="192.168.1.7"
 port=9000
 cache="./tempfile"
 
