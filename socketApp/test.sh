@@ -1,4 +1,4 @@
-target=localhost
+target=192.168.1.7
 port=9000
 rc=0
 
@@ -6,7 +6,7 @@ function send_socket_string
 {
 	string=$1
 	result_file=$2
-	echo ${string} | nc ${target} ${port} -w 1 > /dev/null
+	echo ${string} | nc ${target} ${port} -w 1 > ./temp
 }
 
 function test_send_socket_string
@@ -47,4 +47,4 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 send_socket_string "AESDCHAR_IOCSEEKTO:0,2"  ${seek_result}
 
 #send_socket_string "Omar Yamany"  ${seek_result}
-cat /dev/aesdchar
+cat ./temp

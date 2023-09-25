@@ -42,6 +42,16 @@ struct sockaddr peeradd;
 struct node *HEAD = NULL;
 uint8_t ioctl_sent = 0;
 
+uint8_t check_ioctl(char *string) {
+    uint8_t retval, index;
+    char *cmd = "AESDCHAR_IOCSEEKTO:";
+    for (index = 0; index < 19; index++) {
+        if (string[index] != cmd[index])
+            return 1;
+    }
+    return 0;
+}
+
 void signal_handler(int signal) {
     printf("Caught signal SIGINT!\n");
     printf("Terminating...\n");
@@ -128,7 +138,23 @@ void receive_data(void) {
     syslog(LOG_PRIO(LOG_DEBUG), "**********************************\n");
     syslog(LOG_PRIO(LOG_DEBUG), "The sent string is: %s\n", my_buffer);
     syslog(LOG_PRIO(LOG_DEBUG), "**********************************\n");
-    if (strncmp(IOCTL_CMD, my_buffer, strlen("AESDCHAR_IOC")) == 0) {
+    // if (strncmp(IOCTL_CMD, my_buffer, strlen("AESDCHAR_IOC")) == 0) {
+    //     ioctl_sent = 1;
+    //     struct aesd_seekto seekto;
+    //     seekto.write_cmd = my_buffer[WRITE_CMD] - '0';
+    //     seekto.write_cmd_offset = my_buffer[WRITE_CMD_OFF] - '0';
+    //     syslog(LOG_PRIO(LOG_DEBUG), "Calling ioctl with cmd = %lu\n",
+    //            AESDCHAR_IOCSEEKTO);
+    //     printf("Calling IOCTL with cmd = %lu\n", AESDCHAR_IOCSEEKTO);
+    //     printf("(%u, %u)\n", seekto.write_cmd, seekto.write_cmd_offset);
+    //     printf("(%c, %c)\n", my_buffer[WRITE_CMD], my_buffer[WRITE_CMD_OFF]);
+    //     file = fopen(PATH, "a");
+    //     if (ioctl(fileno(file), AESDCHAR_IOCSEEKTO, &seekto)) {
+    //         syslog(LOG_PRIO(LOG_DEBUG), "Error calling ioctl\n");
+    //     }
+    //     fclose(file);
+    // }
+    if (check_ioctl(my_buffer) == 0) {
         ioctl_sent = 1;
         struct aesd_seekto seekto;
         seekto.write_cmd = my_buffer[WRITE_CMD] - '0';
