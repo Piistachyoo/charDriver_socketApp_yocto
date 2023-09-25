@@ -1,4 +1,4 @@
-#include "../aesd-char-driver/aesd_ioctl.h"
+#include "aesd_ioctl.h"
 #include <fcntl.h>
 #include <netdb.h>
 #include <pthread.h>
