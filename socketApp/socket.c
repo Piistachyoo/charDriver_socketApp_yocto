@@ -125,7 +125,7 @@ void receive_data(void) {
         }
         index++;
     }
-    if (strncmp(IOCTL_CMD, my_buffer, strlen(IOCTL_CMD)) == 0) {
+    if (strncmp(IOCTL_CMD, my_buffer, strlen("AESDCHAR_IOC")) == 0) {
         ioctl_sent = 1;
         struct aesd_seekto seekto;
         seekto.write_cmd = my_buffer[WRITE_CMD] - '0';
