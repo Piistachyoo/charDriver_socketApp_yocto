@@ -47,7 +47,7 @@
 
 ## General Setup
 **Host machine:** 	Ubuntu 20.04 LTS  
-**Target machine:** BeagleBone Black
+**Target machine:** BeagleBone Black<br>
 **Yocto release:**		 Kirkstone
 
 ## Deployment
