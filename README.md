@@ -25,7 +25,7 @@
 - Implemented a read function that allows the user to access the buffer elements like a continuous string of arrays
 - The buffer supports uncomplete writes
 	- If a string is terminated with a newline character '\n', it is considered a complete write 
-	- If a string is not terminated with a newline character '\n', it is considered a complete write, and the next string will append to this one to make a single entry in the buffer
+	- If a string is not terminated with a newline character '\n', it is considered a non-complete write, and the next string will append to this one to make a single entry in the buffer
 #### 2. The device driver:
 - Simple character driver that supports open, release, read, write, llseek, and ioctl operations
 - Uses mutex locks to avoid race conditions and data corruption
