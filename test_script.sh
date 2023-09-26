@@ -1,6 +1,6 @@
 device="/dev/aesdchar"
-#target="beaglebone-yocto.local"
-target="localhost"
+target="beaglebone-yocto.local"
+#target="localhost"
 #target="192.168.1.7"
 port=9000
 cache="./tempfile"
@@ -29,16 +29,20 @@ case "$1" in
     ;;
 
     read)
-    #echo "" | nc ${target} ${port} -w 1 > ${cache}
     cat ${cache}
     ;;
 
     seek)
-    echo "AESDCHAR_IOCSEEKTO:0,2" | nc ${target} ${port} -w 1 > ${cache}
+    entry=$2
+    offset=$3
+    echo "AESDCHAR_IOCSEEKTO:${entry},${offset}" | nc ${target} ${port} -w 1 > ${cache}
     cat ${cache}
     ;;
+    
     *)
     echo "Wrong arguments"
+    exit 1
+    ;;
 esac
 
 exit 0
