@@ -1,5 +1,6 @@
 # charDriver_socketApp_yocto
 
+[Port-addressable linux device driver with yocto! - YouTube](https://youtu.be/B-kaz8u_9iA)
 
 ## File tree
 
@@ -15,7 +16,7 @@
 
 
 ##  Project features
-### The project consists of 3 applications, that supports each other to make a port-addressable driver
+### The project consists of 3 applications, that support each other to make a port-addressable driver
  #### 1. The circular buffer:
 
 - The circular buffer can support up to 10 entries
