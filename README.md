@@ -22,7 +22,7 @@
 - The circular buffer can support up to 10 entries
 - Works as a FIFO (first in first out) buffer
 - If the FIFO is full and we add a new entry, the oldest entry in the buffer will get overwritten
-- Implemented a read function that allows the user to access the buffer elements like a continuous string of arrays
+- Implemented a read function that allows the user to access the buffer elements like a continuous array of strings
 - The buffer supports uncomplete writes
 	- If a string is terminated with a newline character '\n', it is considered a complete write 
 	- If a string is not terminated with a newline character '\n', it is considered a non-complete write, and the next string will append to this one to make a single entry in the buffer
